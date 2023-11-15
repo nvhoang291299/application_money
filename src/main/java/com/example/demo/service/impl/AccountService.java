@@ -14,6 +14,10 @@ public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
 
+    // public AccountService() {
+    // // TODO Auto-generated constructor stub
+    // }
+
     @Override
     public void sendMoney(Request request) {
         String message = null;
@@ -32,12 +36,19 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Account getAccountByUserName(String username) {
-        accountRepository.findByUsername(username);
-        return null;
+    public void withdrawMoney(Request request) {
+        String message = null;
+        String username = request.getUsername();
+        Account account = accountRepository.findByUsername(username);
+        if (account == null) {
+            message = "Tài khoản của bạn không đúng";
+        } else {
+            if (request.getMoney() < 10000) {
+                message = "Số tiền phải lớn hơn 10000 và bé hơn 5000000";
+            } else {
+                account.setBalance(account.getBalance() - request.getMoney());
+                accountRepository.save(account);
+            }
+        }
     }
-    // public AccountService() {
-    // // TODO Auto-generated constructor stub
-    // }
-
 }

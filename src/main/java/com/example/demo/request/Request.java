@@ -43,5 +43,4 @@ public class Request {
     public void setMoney(double money) {
         this.money = money;
     }
-
 }
