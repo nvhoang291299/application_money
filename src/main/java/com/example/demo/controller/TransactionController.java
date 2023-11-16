@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.Account;
 import com.example.demo.request.Request;
 import com.example.demo.service.IAccountService;
 
@@ -41,6 +44,12 @@ public class TransactionController {
         }
         accountService.withdrawMoney(request);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/displayBalance/{username}")
+    public ResponseEntity<?> displayBalance(@PathVariable("username") String username) {
+        Account account = accountService.getBalance(username);
+        return ResponseEntity.ok("Số dư hiện tại của bạn là:" + account.getBalance());
     }
 
 }

@@ -51,4 +51,10 @@ public class AccountService implements IAccountService {
             }
         }
     }
+
+    @Override
+    public Account getBalance(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
 }
