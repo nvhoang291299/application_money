@@ -51,5 +51,13 @@ public class TransactionController {
         Account account = accountService.getBalance(username);
         return ResponseEntity.ok("Số dư hiện tại của bạn là:" + account.getBalance());
     }
+    
+    @PostMapping("/saveMoney")
+    public ResponseEntity<?> saveMoney(@Valid @RequestBody Request request, BindingResult bindingResult){
+    	accountService.saveMoney(request);
+    	return ResponseEntity.ok("Ban da gui tien thanh cong");
+    }
+    
+    
 
 }
