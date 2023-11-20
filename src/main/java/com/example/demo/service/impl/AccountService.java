@@ -26,12 +26,8 @@ public class AccountService implements IAccountService {
         if (account == null) {
             message = "Tài khoản của bạn không đúng";
         } else {
-            if (request.getMoney() < 10000) {
-                message = "Số tiền phải lớn hơn 10000 và bé hơn 5000000";
-            } else {
-                account.setBalance(account.getBalance() + request.getMoney());
-                accountRepository.save(account);
-            }
+            account.setBalance(account.getBalance() + request.getMoney());
+            accountRepository.save(account);
         }
     }
 
@@ -43,12 +39,9 @@ public class AccountService implements IAccountService {
         if (account == null) {
             message = "Tài khoản của bạn không đúng";
         } else {
-            if (request.getMoney() < 10000) {
-                message = "Số tiền phải lớn hơn 10000 và bé hơn 5000000";
-            } else {
-                account.setBalance(account.getBalance() - request.getMoney());
-                accountRepository.save(account);
-            }
+            account.setBalance(account.getBalance() - request.getMoney());
+            accountRepository.save(account);
+
         }
     }
 
