@@ -14,14 +14,9 @@ public class Request {
     private String username;
 
     @NotNull
-    @NotBlank(message = "Số tiền gửi đang bị để trống")
     @Min(value = 10000, message = "Số tiền phải lớn hơn 10000")
     @Max(value = 50000000, message = "Số tiền phải nhỏ hơn 50000000")
     private double money;
-
-    public Request() {
-        // TODO Auto-generated constructor stub
-    }
 
     public Request(String username, double money) {
         this.username = username;
