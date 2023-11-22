@@ -33,7 +33,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeHttpRequests((authz) -> {
-            authz.antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest().;
+            authz.antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest().authenticated();
         });
         // @formatter:on
 
