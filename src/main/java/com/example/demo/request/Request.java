@@ -13,9 +13,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Request {
 
-    @NotBlank(message = "Tên tài khoản đang bị để trống")
-    @Size(max = 6, message = "tên tài khoản không quá 6 ký tự")
-    private String username;
+    @NotBlank(message = "xin vui lòng nhập mã PIN")
+    @Size(max = 6, message = "mã PIN không quá 6 ký tự")
+    private int code;
 
     @NotNull
     @Min(value = 10000, message = "Số tiền phải lớn hơn 10000")
