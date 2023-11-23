@@ -14,7 +14,6 @@ import com.example.demo.request.Request;
 import com.example.demo.service.IAccountService;
 
 @Service
-@Transactional
 public class AccountService implements IAccountService {
 
     @Autowired
@@ -26,6 +25,7 @@ public class AccountService implements IAccountService {
 
         int code = request.getCode();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth.getName());
         Account account = accountRepository.findByUsername(auth.getName());
         if (code == account.getCode()) {
             account.setBalance(account.getBalance() + request.getMoney());

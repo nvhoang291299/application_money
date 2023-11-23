@@ -1,18 +1,15 @@
 package com.example.demo.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
-
-import com.example.demo.repository.IAccountRepository;
 
 @Component
 @EnableScheduling
 public class ConfigAutoSaveMoney {
 
-    @Autowired
-    private IAccountRepository accountRepository;
-
+    // @Autowired
+    // private IAccountRepository accountRepository;
+    //
     // @Bean
     // @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
     // private void autoDepositSavings() {

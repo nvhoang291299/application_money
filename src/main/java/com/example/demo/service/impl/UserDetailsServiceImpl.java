@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Account;
 import com.example.demo.repository.IAccountRepository;
@@ -20,6 +21,7 @@ import com.example.demo.repository.IAccountRepository;
  * @author hoang.nguyen_viet
  *
  */
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
