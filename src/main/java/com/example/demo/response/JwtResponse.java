@@ -1,5 +1,21 @@
 package com.example.demo.response;
 
-public class JwtResponse {
+import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class JwtResponse {
+    
+    private String accessToken;
+
+    private String username;
+    
+    private String refreshToken;
+
+    private List<String> roles;
 }

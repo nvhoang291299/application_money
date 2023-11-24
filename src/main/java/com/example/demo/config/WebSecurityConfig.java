@@ -26,9 +26,6 @@ public class WebSecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private AppConfig appConfig;
-
-    @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
@@ -61,8 +58,9 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login").permitAll()
-                        .requestMatchers("/transaction/api/**").anyRole("USER").anyRequest().authenticated());
+                .authorizeHttpRequests(auth -> auth.antMatchers("/api/auth/**").permitAll()
+                        .antMatchers("/api/transaction/**")
+                        .hasAnyRole("USER").anyRequest().authenticated());
 
         http.authenticationProvider(authenticationProvider());
 

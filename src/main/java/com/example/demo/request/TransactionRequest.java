@@ -2,19 +2,19 @@ package com.example.demo.request;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class Request {
+public class TransactionRequest {
 
-    @NotBlank(message = "xin vui lòng nhập mã PIN")
-    @Size(max = 6, message = "mã PIN không quá 6 ký tự")
+    @NotNull(message = "xin vui lòng nhập mã PIN")
+    // @Max(value = 7, message = "mã PIN không quá 6 ký tự")
     private int code;
 
     @NotNull

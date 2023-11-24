@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Account;
-import com.example.demo.request.Request;
+import com.example.demo.request.TransactionRequest;
 import com.example.demo.service.IAccountService;
 
 @RestController
-@RequestMapping("/transaction/api")
+@RequestMapping("/api/transaction")
 public class TransactionController {
 
     @Autowired
     private IAccountService accountService;
 
     @PostMapping("/sendMoney")
-    public ResponseEntity<?> sendMoney(@Valid @RequestBody Request request, BindingResult bindingResult) {
+    public ResponseEntity<?> sendMoney(@Valid @RequestBody TransactionRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
@@ -34,7 +34,7 @@ public class TransactionController {
     }
 
     @PostMapping("/withdrawMoney")
-    public ResponseEntity<?> withdrawMoney(@Valid @RequestBody Request request, BindingResult bindingResult) {
+    public ResponseEntity<?> withdrawMoney(@Valid @RequestBody TransactionRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
@@ -49,7 +49,7 @@ public class TransactionController {
     }
 
     @PostMapping("/saveMoney")
-    public ResponseEntity<?> saveMoney(@Valid @RequestBody Request request, BindingResult bindingResult) {
+    public ResponseEntity<?> saveMoney(@Valid @RequestBody TransactionRequest request, BindingResult bindingResult) {
         accountService.saveMoney(request);
         return ResponseEntity.ok("Ban da gui tien thanh cong");
     }

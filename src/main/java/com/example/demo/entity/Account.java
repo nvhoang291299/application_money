@@ -35,17 +35,20 @@ public class Account {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "Balance")
+    @Column(name = "Balance", columnDefinition = "default 0")
     private double balance;
 
-    @Column(name = "saveMoney")
+    @Column(name = "saveMoney", columnDefinition = "default 0")
     private double saveMoney;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "code")
+    @Column(name = "code", columnDefinition = "default 0")
     private int code;
+
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "account")
     private Set<Transaction> transactionSet;
@@ -53,5 +56,11 @@ public class Account {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "accounts_roles", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    public Account(String username2, String phoneNumber2, String encode) {
+        this.username = username2;
+        this.phoneNumber = phoneNumber2;
+        this.password = encode;
+    }
 
 }
