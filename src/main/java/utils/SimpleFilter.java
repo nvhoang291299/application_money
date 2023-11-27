@@ -33,9 +33,6 @@ public class SimpleFilter implements Filter {
 
         LOGGER.info("Logging Request  {} : {}", servletRequest.getMethod(), servletRequest.getRequestURI());
 
-        // call next filter in the filter chain
-        // filterChain.doFilter(request, response);
-
         LOGGER.info("Logging Response :{}", response.getContentType());
     }
 
