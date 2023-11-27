@@ -45,7 +45,7 @@ public class AccountService implements IAccountService {
     @Override
     @Transactional
     public Account getBalance(String username) {
-        return accountRepository.findByUsername(username);
+        return accountRepository.findByUsername(username).get();
     }
 
     @Override

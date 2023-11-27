@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -116,10 +117,10 @@ public class AuthController {
         return refreshTokenService.findByRefreshToken(requestRefreshToken)
                 .map(refreshTokenService::verifyExpiration)
                 .map(RefreshToken::getAccount).map(account -> {
-                    String token = jwtUtils.generateTokenFromUsername();
-                    return new TokenRefreshResponse(token, requestRefreshToken);
+                    String token = jwtUtils.generateTokenFromUsername(account.getUsername());
+                    return new ResponseEntity<>(new TokenRefreshResponse(token, requestRefreshToken), HttpStatus.OK);
                 })
-                .orElseThrow(
-                        () -> new TokenRefreshException(requestRefreshToken, "Refresh token không có trong database!"));
+                .orElseThrow(() -> new TokenRefreshException(requestRefreshToken, "Refresh token is not in database!"));
+
     }
 }

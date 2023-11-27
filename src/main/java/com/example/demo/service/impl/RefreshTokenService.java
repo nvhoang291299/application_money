@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class RefreshTokenService implements IRefreshTokenService {
     private IAccountRepository accountRepository;
 
     @Override
-    public RefreshToken findByRefreshToken(String token) {
+    public Optional<RefreshToken> findByRefreshToken(String token) {
         return refreshTokenRepository.findByRefreshToken(token);
     }
 

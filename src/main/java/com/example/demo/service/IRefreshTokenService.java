@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
+import java.util.Optional;
+
 import com.example.demo.entity.RefreshToken;
 
 public interface IRefreshTokenService {
 
-    RefreshToken findByRefreshToken(String token);
+    Optional<RefreshToken> findByRefreshToken(String token);
     
     RefreshToken createRefreshToken(Long userId);
 
