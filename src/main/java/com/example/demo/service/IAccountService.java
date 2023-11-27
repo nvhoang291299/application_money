@@ -21,4 +21,6 @@ public interface IAccountService {
     boolean checkPhoneNumber(SignupRequest signupRequest);
 
     void save(Account account);
+
+    void handleSignup(SignupRequest signupRequest);
 }

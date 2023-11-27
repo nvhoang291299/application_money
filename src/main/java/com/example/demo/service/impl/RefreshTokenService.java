@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.RefreshToken;
@@ -15,7 +16,9 @@ import com.example.demo.service.IRefreshTokenService;
 
 @Service
 public class RefreshTokenService implements IRefreshTokenService {
-    private long refreshTokenDurationSeconds = 120;
+
+    @Value("${spring.security.jwt.refreshTokenDurationSeconds}")
+    private long refreshTokenDurationSeconds;
 
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;

@@ -1,13 +1,19 @@
 package com.example.demo.service.impl;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.Role;
 import com.example.demo.repository.IAccountRepository;
+import com.example.demo.repository.IRoleRepository;
 import com.example.demo.request.SignupRequest;
 import com.example.demo.request.TransactionRequest;
 import com.example.demo.service.IAccountService;
@@ -17,6 +23,12 @@ public class AccountService implements IAccountService {
 
     @Autowired
     private IAccountRepository accountRepository;
+
+    @Autowired
+    private IRoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Override
     @Transactional
@@ -72,6 +84,23 @@ public class AccountService implements IAccountService {
     @Override
     public void save(Account account) {
         accountRepository.save(account);
+    }
+
+    @Override
+    public void handleSignup(SignupRequest signupRequest) {
+        Account account = new Account(signupRequest.getUsername(), signupRequest.getPhoneNumber(),
+                encoder.encode(signupRequest.getPassword()));
+
+        String role = signupRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        if (role == null) {
+            Role userRole = roleRepository.findByNameRole("ROLE_USER");
+            roles.add(userRole);
+        }
+        account.setRoles(roles);
+        accountRepository.save(account);
+
     }
 
 }
